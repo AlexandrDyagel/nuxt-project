@@ -11,11 +11,19 @@
   },
   "dependencies": {
     "@nuxt/fonts": "^0.7.2",
+    "@nuxt/image": "^1.7.0",
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "@pinia/nuxt": "^0.5.4",
     "nuxt": "^3.13.0",
-    "vue": "latest"
+    "nuxt-typed-router": "^3.6.5",
+    "pinia": "^2.2.2",
+    "vue": "latest",
+    "vue-tg": "^0.8.0"
   },
   "devDependencies": {
+    "@formkit/auto-animate": "^0.8.2",
     "@vueuse/nuxt": "^11.0.3",
+    "dayjs-nuxt": "^2.1.9",
     "prettier": "^3.3.3"
   }
 }

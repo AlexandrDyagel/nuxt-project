@@ -1,0 +1,9 @@
+html,
+body,
+#app{
+    background: #17212B;
+    color: white;
+}
+div.history {
+    background: #17212B;
+}

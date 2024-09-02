@@ -1,9 +1,14 @@
+<script setup lang="ts">
+import BottomMenu from "~/components/BottomMenu.vue";
+</script>
+
 <template>
-  <header>
-    <NuxtLink to="/">Home</NuxtLink>
-    <NuxtLink to="/about">About</NuxtLink>
-  </header>
-  <main>
-    <slot />
+  <main class="mb-20">
+    <ClientOnly>
+      <slot />
+    </ClientOnly>
   </main>
+  <nav>
+    <BottomMenu />
+  </nav>
 </template>
