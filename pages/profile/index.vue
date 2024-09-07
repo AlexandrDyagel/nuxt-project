@@ -46,13 +46,15 @@ function generateColor(): string {
 }
 </script>
 <template>
-  <div>
-    <h1 class="font-bold text-3xl my-2 text-center">Мой профиль</h1>
+  <div
+    class="sticky start-0 top-0 w-full z-50 shadow-md text-xs uppercase font-bold bg-gray-700/90 text-gray-400 px-6 py-3 text-center"
+  >
+    Мой профиль
   </div>
 
   <!-- КАРТОЧКА ПРОФИЛЯ -->
   <div
-    class="mx-4 w-auto border rounded-t-2xl shadow bg-gray-800 border-gray-700 mb-2"
+    class="mx-4 mt-4 w-auto border rounded-t-2xl shadow bg-gray-800 border-gray-700 mb-2"
   >
     <div class="flex flex-col items-center py-5">
       <div
@@ -85,7 +87,7 @@ function generateColor(): string {
             scope="row"
             class="px-6 py-4 font-medium whitespace-nowrap text-white"
           >
-            Оплата
+            Реферальная программа
           </th>
         </tr>
         <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">

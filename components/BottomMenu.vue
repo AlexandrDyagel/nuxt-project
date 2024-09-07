@@ -5,6 +5,7 @@ import HomeIcon from "@/components/icons/HomeIcon.vue";
 import AddIcon from "@/components/icons/AddIcon.vue";
 import HistoryIcon from "@/components/icons/HistoryIcon.vue";
 import ProfileIcon from "@/components/icons/ProfileIcon.vue";
+import WalletIcon from "~/components/icons/WalletIcon.vue";
 
 const navItems = ref([
   {
@@ -29,6 +30,13 @@ const navItems = ref([
     icon: shallowRef(HistoryIcon),
   },
   {
+    name: "Баланс",
+    routeName: "wallet",
+    route: "/wallet",
+    active: false,
+    icon: shallowRef(WalletIcon),
+  },
+  {
     name: "Профиль",
     routeName: "profile",
     route: "/profile",
@@ -48,7 +56,7 @@ watchEffect(async () => {
 <template>
   <div class="fixed start-0 bottom-0 w-full z-50 bg-[#17212B]">
     <ul
-      class="text-xs font-medium text-center shadow flex divide-gray-700 text-gray-400 border-t border-gray-700"
+      class="text-[10px] leading-[12px] font-medium text-center shadow flex divide-gray-700 text-gray-400 border-t border-gray-700"
     >
       <nuxt-link
         :key="navItem.route"
