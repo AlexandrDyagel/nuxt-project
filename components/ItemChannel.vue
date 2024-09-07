@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import { useWebAppNavigation } from "vue-tg";
-import Channel from "~/models/Channel";
+import type { Channel } from "~/models/Channel";
 
 const { openTelegramLink } = useWebAppNavigation();
 
-defineProps({
-  channel: Channel,
-});
+defineProps<{
+  channel: Channel;
+}>();
 
 const emit = defineEmits(["confirmSubscription"]);
 
 const isClickedLink = ref(false);
-const isSubscribed = ref(false);
 const isWaiting = ref(false);
 
 const count = ref();
@@ -39,36 +37,47 @@ function countdown(time: number): void {
 </script>
 
 <template>
-  <div
-    class="flex items-center justify-between border-b bg-gray-800 border-gray-700"
-  >
-    <div class="flex items-center px-6 py-4 whitespace-nowrap text-white">
+  <div class="flex w-full items-center border-b bg-gray-800 border-gray-700">
+    <div
+      class="flex w-9/12 items-center px-4 py-4 whitespace-nowrap text-white"
+    >
       <img
         class="w-10 h-10 rounded-full"
-        :src="channel?.img"
+        :src="channel.image"
         alt="Jese image"
       />
-      <div class="ps-3">
-        <div class="text-base font-semibold">{{ channel?.name }}</div>
-        <div class="font-normal text-gray-500">{{ channel?.email }}</div>
+      <div class="ps-3 w-10/12">
+        <div class="text-base truncate font-semibold">
+          {{ channel.title }}
+        </div>
+        <div class="font-normal truncate text-gray-500">
+          {{ channel.description }}
+        </div>
       </div>
     </div>
-    <div v-if="!isClickedLink" class="px-6 py-4">
+    <div v-if="!isClickedLink" class="px-1 py-4 w-3/12">
       <div
-        @click="openLink(channel?.link)"
+        @click="openLink(channel.inviteLink)"
         class="text-[10px] cursor-pointer px-2 py-1 hover:text-white border focus:ring-4 focus:outline-none font-medium rounded-lg text-center me-2 mb-2 border-green-500 text-green-500 hover:bg-green-600 focus:ring-green-800"
       >
         Перейти
       </div>
     </div>
-    <div v-else-if="isWaiting" class="px-6 py-4">
+    <div v-else-if="isWaiting" class="px-1 py-4 w-3/12">
       <div
         class="text-[10px] cursor-pointer px-2 py-1 hover:text-white border focus:ring-4 focus:outline-none font-medium rounded-lg text-center me-2 mb-2 border-red-800 text-red-500"
       >
-        {{ count }} сек
+        <div class="flex items-center justify-center gap-0.5">
+          <span><IconsClockIcon /></span>
+          <p>{{ count }} сек</p>
+        </div>
       </div>
     </div>
-    <div v-else @click="emit('confirmSubscription', channel)" class="px-6 py-4">
+    <div
+      v-else
+      @click="emit('confirmSubscription', channel)"
+      class="px-1 py-4 w-3/12"
+    >
       <div
         class="text-[10px] cursor-pointer px-2 py-1 hover:text-white border focus:ring-4 focus:outline-none font-medium rounded-lg text-center me-2 mb-2 border-amber-500 text-amber-500"
       >

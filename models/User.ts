@@ -1,13 +1,9 @@
-class User {
-  constructor(
-    readonly id: number,
-    readonly firstName: string,
-    readonly lastName: string,
-    readonly username: string,
-    readonly isBot: boolean,
-    readonly photoUrl?: string,
-    readonly isPremium?: boolean,
-  ) {}
+export interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  username: string;
+  isBot: boolean;
+  photoUrl?: string;
+  isPremium?: boolean;
 }
-
-export default User;

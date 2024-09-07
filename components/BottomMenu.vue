@@ -1,55 +1,21 @@
-<script setup>
-import { computed, ref, shallowRef, watch } from "vue";
+<script setup lang="ts">
 import Svg from "@/components/Svg.vue";
-import HomeIcon from "@/components/icons/HomeIcon.vue";
-import AddIcon from "@/components/icons/AddIcon.vue";
-import HistoryIcon from "@/components/icons/HistoryIcon.vue";
-import ProfileIcon from "@/components/icons/ProfileIcon.vue";
-import WalletIcon from "~/components/icons/WalletIcon.vue";
-
-const navItems = ref([
-  {
-    name: "Биржа",
-    routeName: "feed",
-    route: "/feed",
-    active: true,
-    icon: shallowRef(HomeIcon),
-  },
-  {
-    name: "Добавить",
-    routeName: "add",
-    route: "/add",
-    active: false,
-    icon: shallowRef(AddIcon),
-  },
-  {
-    name: "История",
-    routeName: "history",
-    route: "/history",
-    active: false,
-    icon: shallowRef(HistoryIcon),
-  },
-  {
-    name: "Баланс",
-    routeName: "wallet",
-    route: "/wallet",
-    active: false,
-    icon: shallowRef(WalletIcon),
-  },
-  {
-    name: "Профиль",
-    routeName: "profile",
-    route: "/profile",
-    active: false,
-    icon: shallowRef(ProfileIcon),
-  },
-]);
+import { bottomNavItems } from "~/models/Menu";
+import { Routes } from "~/models/Routes";
 
 const route = useRoute();
-watchEffect(async () => {
-  navItems.value.forEach((item) => {
-    item.active = item.routeName === route.name;
+const profileItem = bottomNavItems.value.find(
+  (item) => item.route === Routes.Profile,
+)!;
+
+watchEffect(() => {
+  bottomNavItems.value.forEach((item) => {
+    item.isActive = item.route === route.path;
   });
+
+  if (route.fullPath === Routes.Promo || route.fullPath === Routes.RefProgram) {
+    profileItem.isActive = true;
+  }
 });
 </script>
 
@@ -60,9 +26,9 @@ watchEffect(async () => {
     >
       <nuxt-link
         :key="navItem.route"
-        v-for="navItem in navItems"
+        v-for="navItem in bottomNavItems"
         class="w-full transition mx-2 duration-500 my-2 rounded-lg active:text-white active:bg-gray-700"
-        :class="navItem.active ? `text-white bg-gray-700` : `bg-[#17212B]`"
+        :class="navItem.isActive ? `text-white bg-gray-700` : `bg-[#17212B]`"
         :to="navItem.route"
       >
         <li

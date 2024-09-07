@@ -1,8 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
-  devtools: { enabled: true },
+  devtools: { enabled: false },
+
   ssr: false,
+
+  routeRules: {
+    "/": { redirect: "/feed" },
+  },
 
   app: {
     rootAttrs: {
@@ -41,5 +46,19 @@ export default defineNuxtConfig({
 
   devServer: {
     host: "192.168.31.189",
+  },
+
+  imports: {
+    presets: [
+      {
+        from: "vue-tg",
+        imports: [
+          "useWebApp",
+          "useWebAppPopup",
+          "useWebAppBackButton",
+          "useWebAppNavigation",
+        ],
+      },
+    ],
   },
 });

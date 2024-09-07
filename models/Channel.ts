@@ -1,11 +1,8 @@
-class Channel {
-  constructor(
-    readonly id: number,
-    readonly name: string,
-    readonly email: string,
-    readonly img: string,
-    readonly link: string,
-  ) {}
+export interface Channel {
+  readonly id: number;
+  readonly title: string;
+  readonly description: string;
+  readonly username: string;
+  readonly image: string;
+  readonly inviteLink: string;
 }
-
-export default Channel;

@@ -1,19 +1,34 @@
 <script setup lang="ts">
-import User from "~/models/User";
-
-const { useWebApp } = await import("vue-tg");
+import { profileMenuItems } from "~/models/Menu";
+import type { Ref } from "vue";
+import type { User } from "~/models/User";
 
 const { initDataUnsafe } = useWebApp();
 
-const user = new User(
-  initDataUnsafe?.user?.id,
-  initDataUnsafe?.user?.first_name,
-  initDataUnsafe?.user?.last_name,
-  initDataUnsafe?.user?.username,
-  initDataUnsafe?.user?.is_bot,
-  initDataUnsafe?.user?.photo_url,
-  initDataUnsafe?.user?.is_premium,
-);
+const user: Ref<User> = ref({
+  id: initDataUnsafe?.user?.id,
+  firstName: initDataUnsafe?.user?.first_name,
+  lastName: initDataUnsafe?.user?.last_name,
+  username: initDataUnsafe?.user?.username,
+  isBot: initDataUnsafe?.user?.is_bot,
+  photoUrl: initDataUnsafe?.user?.photo_url,
+  isPremium: initDataUnsafe?.user?.is_premium,
+});
+
+/*try{
+  const user = new User(
+      initDataUnsafe?.user?.id,
+      initDataUnsafe?.user?.first_name,
+      initDataUnsafe?.user?.last_name,
+      initDataUnsafe?.user?.username,
+      initDataUnsafe?.user?.is_bot,
+      initDataUnsafe?.user?.photo_url,
+      initDataUnsafe?.user?.is_premium,
+  );
+} catch(e){
+  console.log(e);
+}*/
+
 console.log(user);
 
 const colors: string[] = [
@@ -46,12 +61,7 @@ function generateColor(): string {
 }
 </script>
 <template>
-  <div
-    class="sticky start-0 top-0 w-full z-50 shadow-md text-xs uppercase font-bold bg-gray-700/90 text-gray-400 px-6 py-3 text-center"
-  >
-    Мой профиль
-  </div>
-
+  <TopAppBar title="Мой профиль" is-back-button />
   <!-- КАРТОЧКА ПРОФИЛЯ -->
   <div
     class="mx-4 mt-4 w-auto border rounded-t-2xl shadow bg-gray-800 border-gray-700 mb-2"
@@ -61,53 +71,42 @@ function generateColor(): string {
         class="w-24 h-24 mb-3 rounded-full tracking-widest shadow-lg text-3xl font-bold text-white content-center text-center"
         :class="generateColor()"
       >
-        {{ user.firstName.charAt(0) }}{{ user.lastName.charAt(0) }}
+        {{ user?.firstName?.charAt(0) }}{{ user?.lastName?.charAt(0) }}
       </div>
       <h5 class="mb-1 text-xl font-medium text-white">
-        {{ user.firstName }} {{ user.lastName }}
+        {{ user?.firstName }} {{ user?.lastName }}
       </h5>
-      <span class="text-sm text-gray-400">ID: {{ user.id }}</span>
+      <span class="text-sm text-gray-400">ID: {{ user?.id }}</span>
       <span class="text-sm text-gray-400">{{
-        user.username ? `@${user.username}` : ""
+        user?.username ? `@${user?.username}` : ""
       }}</span>
     </div>
   </div>
 
   <!-- ПЛАШКИ -->
   <div class="mx-4 w-auto border shadow bg-gray-800 border-gray-700 mb-2">
-    <table class="w-full text-sm text-center text-gray-400">
-      <thead class="text-xs uppercase bg-gray-700 text-gray-400">
-        <tr>
-          <th scope="col" class="px-6 py-3">Настройки</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
-          <th
-            scope="row"
-            class="px-6 py-4 font-medium whitespace-nowrap text-white"
-          >
-            Реферальная программа
-          </th>
-        </tr>
-        <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
-          <th
-            scope="row"
-            class="px-6 py-4 font-medium whitespace-nowrap text-white"
-          >
-            Промокоды
-          </th>
-        </tr>
-        <tr class="bg-gray-800 hover:bg-gray-600">
-          <th
-            scope="row"
-            class="px-6 py-4 font-medium whitespace-nowrap text-white"
-          >
-            Изменить язык
-          </th>
-        </tr>
-      </tbody>
-    </table>
+    <div class="w-full text-sm text-center text-gray-400">
+      <div class="text-xs uppercase bg-gray-700 text-gray-400">
+        <div>
+          <div class="px-6 py-3">Настройки</div>
+        </div>
+      </div>
+      <div>
+        <div
+          v-for="menuItem in profileMenuItems"
+          :class="
+            profileMenuItems.at(-1) === menuItem
+              ? 'bg-gray-800 hover:bg-gray-600 cursor-pointer'
+              : 'border-b border-gray-700 bg-gray-800 hover:bg-gray-600 cursor-pointer'
+          "
+          @click="$router.push(menuItem.route)"
+        >
+          <div class="px-6 py-4 font-medium whitespace-nowrap text-white">
+            {{ menuItem.name }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ПЛАШКА УДАЛИТЬ АККАУНТ -->

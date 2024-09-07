@@ -1,5 +1,11 @@
-<script setup>
-const channels = [
+<script setup lang="ts">
+type ChannelAdd = {
+  id: number;
+  name: string;
+  email: string;
+  img: string;
+};
+const channels: ChannelAdd[] = [
   {
     id: 1,
     name: "Neil Sims",
@@ -244,7 +250,7 @@ const channels = [
 
 const idCounter = ref(1);
 
-const addedChannels = ref([]);
+const addedChannels = ref([] as ChannelAdd[]);
 
 const addChannel = () => {
   let channel = channels.find((c) => c.id === idCounter.value);
@@ -257,11 +263,7 @@ const addChannel = () => {
 };
 </script>
 <template>
-  <div
-    class="sticky start-0 top-0 w-full z-50 shadow-md text-xs uppercase font-bold bg-gray-700/90 text-gray-400 px-6 py-3 text-center"
-  >
-    Мои каналы
-  </div>
+  <TopAppBar title="Мои каналы" :is-back-button="true" />
 
   <div class="p-4 w-full">
     <div class="p-2 mb-2 border-2 border-dashed rounded-lg border-gray-700">
