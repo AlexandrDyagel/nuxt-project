@@ -4,9 +4,12 @@ services:
   postgres:
     container_name: nuxt-postgres
     image: postgres:16-alpine3.19
+    restart: always
     environment:
       POSTGRES_DB: 'nuxt-db'
-      POSTGRES_USER: 'root'
-      POSTGRES_PASSWORD: 'root'
+      POSTGRES_USER: 'nuxt-root'
+      POSTGRES_PASSWORD: 'nuxt-password'
     ports:
       - '5432:5432'
+    volumes:
+      - './pgdata:/var/lib/postgresql/data'
