@@ -1,7 +1,7 @@
-<script setup lang="ts">
-import type { Channel } from "@prisma/client";
+import prisma from "~/lib/prisma";
+import { Channel } from "@prisma/client";
 
-/*const channels: Ref<Channel[]> = ref([
+const channels: Channel[] = [
   {
     id: 15134536,
     title: "Коток|коготоК - канал для самых любимых котиков",
@@ -162,48 +162,10 @@ import type { Channel } from "@prisma/client";
     image: "https://flowbite.com/docs/images/people/profile-picture-4.jpg",
     inviteLink: "https://t.me/kotok",
   },
-]);*/
+];
 
-const { data: chls } = await useFetch("/api/channels");
-const channels: Ref<Channel[] | null> = ref(chls.value);
-//const { data: channels } = await useFetch("/api/crt");
-
-const confirmSubscription = async (ch: Channel) => {
-  // Логика удаления канала с сервера у подписчика с ленты
-  try {
-    const { data: deleteChannel, status } = await useFetch(
-      `/api/crt/${ch.id}`,
-      {
-        method: "DELETE",
-      },
-    );
-
-    if (status.value === "success" && deleteChannel !== null) {
-      const index =
-        channels.value?.findIndex((channel) => channel.id === ch.id) || -1;
-      if (index !== -1) {
-        channels.value?.splice(index, 1);
-      }
-      console.log("Удален");
-    } else {
-      console.log("Не удален");
-    }
-  } catch (e) {
-    console.log("Error => ", e);
-  }
-};
-</script>
-
-<template>
-  <TopAppBar title="Биржа каналов" />
-  <div class="relative overflow-y-auto shadow-md">
-    <div v-auto-animate class="text-sm text-left text-gray-400">
-      <ItemChannel
-        v-for="channel in channels"
-        :key="channel.id"
-        :channel="channel"
-        @confirmSubscription="confirmSubscription"
-      />
-    </div>
-  </div>
-</template>
+export default defineEventHandler(async (event) => {
+  return await prisma.channel.createManyAndReturn({
+    data: channels,
+  });
+});

@@ -36,7 +36,12 @@ export default defineNuxtConfig({
     "nuxt-typed-router",
     "@nuxtjs/tailwindcss",
     "@formkit/auto-animate",
+    "@prisma/nuxt",
   ],
+
+  prisma: {
+    autoSetupPrisma: true,
+  },
 
   css: ["~/assets/css/main.css"],
 
@@ -46,6 +51,9 @@ export default defineNuxtConfig({
 
   devServer: {
     host: "192.168.31.189",
+    loadingTemplate(data) {
+      return `${data.loading}`;
+    },
   },
 
   imports: {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Channel } from "~/models/Channel";
+import type { Channel } from "@prisma/client";
 
 const { openTelegramLink } = useWebAppNavigation();
 
@@ -20,7 +20,7 @@ function openLink(link: string | undefined) {
     isWaiting.value = true;
 
     openTelegramLink(link);
-    countdown(10);
+    countdown(2);
   }
 }
 
