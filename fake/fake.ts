@@ -1,7 +1,4 @@
-import prisma from "~/lib/prisma";
-import { Channel } from "@prisma/client";
-
-const channels: Channel[] = [
+export const channels = [
   {
     id: 15134536,
     title: "Коток|коготоК - канал для самых любимых котиков",
@@ -9,6 +6,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-1.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 34,
   },
   {
     id: 15234536,
@@ -17,6 +15,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-2.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 35,
   },
   {
     id: 15334536,
@@ -25,6 +24,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-3.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 36,
   },
   {
     id: 15344536,
@@ -33,6 +33,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-4.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 37,
   },
   {
     id: 15345536,
@@ -41,6 +42,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 38,
   },
   {
     id: 15634536,
@@ -49,6 +51,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-2.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 39,
   },
   {
     id: 15374536,
@@ -57,6 +60,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-1.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 40,
   },
   {
     id: 15384536,
@@ -65,6 +69,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-3.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 41,
   },
   {
     id: 15394536,
@@ -73,6 +78,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 42,
   },
   {
     id: 11534536,
@@ -81,6 +87,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-4.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 43,
   },
   {
     id: 21534536,
@@ -89,6 +96,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-1.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 44,
   },
   {
     id: 13534536,
@@ -97,6 +105,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-2.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 45,
   },
   {
     id: 12534536,
@@ -105,6 +114,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-3.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 46,
   },
   {
     id: 123534536,
@@ -113,6 +123,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-4.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 47,
   },
   {
     id: 14534536,
@@ -121,6 +132,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 48,
   },
   {
     id: 15534536,
@@ -129,6 +141,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-2.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 49,
   },
   {
     id: 16534536,
@@ -137,6 +150,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-1.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 50,
   },
   {
     id: 17534536,
@@ -145,6 +159,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-3.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 51,
   },
   {
     id: 18534536,
@@ -153,6 +168,7 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-5.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 52,
   },
   {
     id: 19534536,
@@ -161,11 +177,6 @@ const channels: Channel[] = [
     username: "@kotokogotok",
     image: "https://flowbite.com/docs/images/people/profile-picture-4.jpg",
     inviteLink: "https://t.me/kotok",
+    owner: 53,
   },
 ];
-
-export default defineEventHandler(async (event) => {
-  return await prisma.channel.createManyAndReturn({
-    data: channels,
-  });
-});

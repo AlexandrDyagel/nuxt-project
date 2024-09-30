@@ -20,7 +20,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="fixed start-0 bottom-0 w-full z-50 bg-[#17212B]">
+  <div class="fixed start-0 bottom-0 w-full z-40 bg-[#17212B]">
     <ul
       class="text-[10px] leading-[12px] font-medium text-center shadow flex divide-gray-700 text-gray-400 border-t border-gray-700"
     >

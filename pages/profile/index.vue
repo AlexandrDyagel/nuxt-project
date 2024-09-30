@@ -1,35 +1,16 @@
 <script setup lang="ts">
 import { profileMenuItems } from "~/models/Menu";
-import type { Ref } from "vue";
 import type { User } from "~/models/User";
 
-const { initDataUnsafe } = useWebApp();
+const store = useTgWebAppStore();
+console.log("USER DATA: ", useWebApp().initDataUnsafe);
 
-const user: Ref<User> = ref({
-  id: initDataUnsafe?.user?.id,
-  firstName: initDataUnsafe?.user?.first_name,
-  lastName: initDataUnsafe?.user?.last_name,
-  username: initDataUnsafe?.user?.username,
-  isBot: initDataUnsafe?.user?.is_bot,
-  photoUrl: initDataUnsafe?.user?.photo_url,
-  isPremium: initDataUnsafe?.user?.is_premium,
-});
-
-/*try{
-  const user = new User(
-      initDataUnsafe?.user?.id,
-      initDataUnsafe?.user?.first_name,
-      initDataUnsafe?.user?.last_name,
-      initDataUnsafe?.user?.username,
-      initDataUnsafe?.user?.is_bot,
-      initDataUnsafe?.user?.photo_url,
-      initDataUnsafe?.user?.is_premium,
-  );
-} catch(e){
-  console.log(e);
-}*/
-
-console.log(user);
+const user: User = {
+  id: store.dataUnsafe.user.id,
+  firstName: store.dataUnsafe.user.first_name,
+  lastName: store.dataUnsafe.user.last_name,
+  username: store.dataUnsafe.user.username,
+};
 
 const colors: string[] = [
   "bg-amber-700",
@@ -71,14 +52,14 @@ function generateColor(): string {
         class="w-24 h-24 mb-3 rounded-full tracking-widest shadow-lg text-3xl font-bold text-white content-center text-center"
         :class="generateColor()"
       >
-        {{ user?.firstName?.charAt(0) }}{{ user?.lastName?.charAt(0) }}
+        {{ user.firstName.charAt(0) }}{{ user.lastName.charAt(0) }}
       </div>
       <h5 class="mb-1 text-xl font-medium text-white">
-        {{ user?.firstName }} {{ user?.lastName }}
+        {{ user.firstName }} {{ user.lastName }}
       </h5>
-      <span class="text-sm text-gray-400">ID: {{ user?.id }}</span>
+      <span class="text-sm text-gray-400">ID: {{ user.id }}</span>
       <span class="text-sm text-gray-400">{{
-        user?.username ? `@${user?.username}` : ""
+        user.username ? `@${user.username}` : ""
       }}</span>
     </div>
   </div>

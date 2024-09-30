@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
+  future: {
+    compatibilityVersion: 4,
+  },
 
   ssr: false,
 
@@ -36,12 +39,7 @@ export default defineNuxtConfig({
     "nuxt-typed-router",
     "@nuxtjs/tailwindcss",
     "@formkit/auto-animate",
-    "@prisma/nuxt",
   ],
-
-  prisma: {
-    autoSetupPrisma: true,
-  },
 
   css: ["~/assets/css/main.css"],
 
@@ -51,9 +49,7 @@ export default defineNuxtConfig({
 
   devServer: {
     host: "192.168.31.189",
-    loadingTemplate(data) {
-      return `${data.loading}`;
-    },
+    port: 3000,
   },
 
   imports: {
@@ -65,6 +61,8 @@ export default defineNuxtConfig({
           "useWebAppPopup",
           "useWebAppBackButton",
           "useWebAppNavigation",
+          "useWebAppCloudStorage",
+          "useWebAppRequests",
         ],
       },
     ],

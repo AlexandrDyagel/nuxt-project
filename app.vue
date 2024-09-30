@@ -5,6 +5,8 @@ import { ExpandedViewport } from "vue-tg";
 function cmenu() {
   return false;
 }*/
+
+await useTgWebAppStore().init();
 </script>
 
 <template>

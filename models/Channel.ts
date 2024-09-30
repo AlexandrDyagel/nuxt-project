@@ -5,4 +5,5 @@ export interface Channel {
   readonly username: string;
   readonly image: string;
   readonly inviteLink: string;
+  readonly ownerId: number;
 }
